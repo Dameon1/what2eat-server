@@ -1,129 +1,33 @@
 'use strict';
 
-
-const scratch = require('./scratch/scratch');
+require('dotenv').config();
 const express = require('express');
-const app = express();
+
 const cors = require('cors');
 const morgan = require('morgan');
 let mongoose = require('mongoose');
-//const Cheese = require('./models/cheeses');
+const passport = require('passport');
+const app = express();
+
 const { PORT, CLIENT_ORIGIN ,MONGODB_URI} = require('./config');
-const { dbConnect } = require('./db-mongoose');
+const {router: usersRouter} = require('./routes/users');
+const {router: authRouter} = require('./routes/auth');
+const {router: recipeRouter} = require('./routes/recipes');
+const jwtStrategy = require('./passport/jwt');
 
 
-
-
-
-
-
-app.use(
-  morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
-    skip: (req, res) => process.env.NODE_ENV === 'test'
-  })
-);
-
-app.use(
-  cors({
-    origin: CLIENT_ORIGIN
-  })
-);
-
-
-
-
-app.get('/', ( req, res, next) => {
-  res.json(scratch);
-});
-
-
-
-
-
-
-function runServer(port = PORT) {
-  const server = app
-    .listen(port, () => {
-      console.info(`App listening on port ${server.address().port}`);
-    })
-    .on('error', err => {
-      console.error('Express failed to start');
-      console.error(err);
-    });
-}
-
-if (require.main === module) {
-  dbConnect();
-  runServer();
-}
-
-module.exports = { app };
-'use strict';
-
-
+passport.use(jwtStrategy);
 
 app.use(express.json());
 app.use(morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', { skip: (req, res) => process.env.NODE_ENV === 'test' }));
 app.use(cors({ origin: CLIENT_ORIGIN }));
 
-app.get('/api/cheeses',(req,res,next) => {
-  res.json(cheeses);
-}); 
 
-app.get('/api/cheeses/:id', (req, res, next) => {
-  let {id} = req.params;
-  console.log(id);
-  Cheese.findOne({_id:id})  
-    .then(results => {
-      res.json(results);
-    })
-    .catch(err => {
-      next(err);
-    });
-});
-app.get('/', ( req, res, next) => {
-  Cheese.find()
-    .then(results => {
-      res.json(results);
-    })
-    .catch(next);
-});
-
-app.post('/',(req,res,next) => {
-  let {title} = req.body;
-  Cheese.create({title})
-    .then(results => {
-     
-      res.status(201).json(results);
-    }).catch(next);
-} );
-
-app.delete('/cheese/:id',(req,res,next) => {
-  let {id} = req.params;
-  
-  Cheese.findOneAndRemove({_id:id})
-    .then(() => {
-      res.status(204).end();
-    })
-    .catch(next);
-});
+app.use('/api/users', usersRouter);
+app.use('/api/login', authRouter);
+app.use('/api/recipes', recipeRouter);
 
 
-function runServer(port = PORT) {
-  const server = app
-    .listen(port, () => {
-      console.info(`App listening on port ${server.address().port}`);
-    })
-    .on('error', err => {
-      console.error('Express failed to start');
-      console.error(err);
-    });
-}
-
-// if (require.main === module) {
-//   dbConnect();
-//   runServer();
-// }
 if (require.main === module) {
   mongoose.connect(MONGODB_URI)
     .then(instance => {

@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "333333333333333333333300",
+    "username": "user0",
+    "password": "$2a$10$AYrtybVt.dyVS6RDWCXyrOcuk6uz2HHPARRRy.uQTMIJpsdaOTlOe"
+  },
+  {
+    "_id": "333333333333333333333301",
+    
+    "username": "user1",
+    "password": "$2a$10$AYrtybVt.dyVS6RDWCXyrOcuk6uz2HHPARRRy.uQTMIJpsdaOTlOe"
+  },
+  {
+    "_id": "333333333333333333333302",
+    "username": "user2",
+    "password": "$2a$10$AYrtybVt.dyVS6RDWCXyrOcuk6uz2HHPARRRy.uQTMIJpsdaOTlOe"
+  }
+]
