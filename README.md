@@ -1,4 +1,5 @@
 # what2eat
+[![Build Status](https://travis-ci.org/Dameon1/what2eat-server.svg?branch=master)](https://travis-ci.org/Dameon1/what2eat-server)
 
 ## Application details
 
