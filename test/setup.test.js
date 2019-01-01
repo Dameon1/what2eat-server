@@ -25,7 +25,7 @@ describe('What2Eat - Endpoints', function () {
   const password = 'password';
   let token;
   let testUser;
-  let testRecipe;
+  let testRecipe; 
   before(function () {
     return mongoose.connect(TEST_DATABASE_URL,{ useNewUrlParser: true })
     .then(()=>mongoose.connection.db.dropDatabase())
