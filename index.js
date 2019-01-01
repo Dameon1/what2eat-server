@@ -15,6 +15,10 @@ const {router: authRouter} = require('./routes/auth');
 const {router: recipeRouter} = require('./routes/recipes');
 const jwtStrategy = require('./passport/jwt');
 
+//testing--remove when done
+// app.get('/', (req,res) => {
+//   res.json([{"working":"working"}])
+// })
 
 passport.use(jwtStrategy);
 

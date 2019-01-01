@@ -17,5 +17,6 @@ recipeSchema.set('toObject', {
   }
 });
 
+
 module.exports = mongoose.model('Recipe', recipeSchema);
 
