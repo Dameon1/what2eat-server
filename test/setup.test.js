@@ -81,12 +81,12 @@ describe('What2Eat - Endpoints', function () {
     it('Should return an 201', function () {
       return chai.request(app)
         .post('/api/recipes')        
-        .set('Authorization', `Bearer ${token}`)
         .send({recipeId:777777,userId:testUser.id})
+        .set('Authorization', `Bearer ${token}`)
         .then((res) => {
           expect(res.body.recipeId).to.equal(777777)
           expect(res.body.userId).to.equal(testUser.id)
-          expect(res).to.have.status(400);
+          expect(res).to.have.status(201);
         });        
     });
   });
