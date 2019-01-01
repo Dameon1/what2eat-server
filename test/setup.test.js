@@ -80,7 +80,7 @@ describe('What2Eat - Endpoints', function () {
   describe('POST recipe endpoint', function() {
     it('Should return an 201', function () {
       return chai.request(app)
-        .post('/api/recipes/')        
+        .post('/api/recipes')        
         .set('Authorization', `Bearer ${token}`)
         .send({recipeId:777777,userId:testUser.id})
         .then((res) => {
