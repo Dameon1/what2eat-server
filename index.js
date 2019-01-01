@@ -39,7 +39,7 @@ if (require.main === module) {
       console.info(`Connected to: mongodb://${conn.host}:${conn.port}/${conn.name}`);
     })
     .catch(err => {
-      console.error(`ERROR: ${err.message}`);
+      console.error(`ERROR1: ${err.message}`);
       console.error('\n === Did you remember to start `mongod`? === \n');
       console.error(err);
     });
