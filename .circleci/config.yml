@@ -36,6 +36,5 @@ jobs:
       # run tests!
       - run: 
         command: npm run test
-          environment:
-            TEST_DATABASE_URL: "mongodb://dev:d3vd3v@ds042688.mlab.com:42688/testingmongo"
+          
 
