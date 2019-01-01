@@ -27,7 +27,7 @@ describe('What2Eat - Endpoints', function () {
   let testUser;
   let testRecipe;
   before(function () {
-    return mongoose.connect(TEST_DATABASE_URL)
+    return mongoose.connect(TEST_DATABASE_URL,{ useNewUrlParser: true })
     .then(()=>mongoose.connection.db.dropDatabase())
     .then(() => {
      return User.hashPassword(password)
