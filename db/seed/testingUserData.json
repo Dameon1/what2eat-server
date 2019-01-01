@@ -1,11 +1,17 @@
-[{
-  "_id":"111111111111111111111100",
+[{  
   "username":"myself",
   "password":"password"
 },
-{
-  "_id":"111111111111111111111101",
+{  
   "username":"yourself",
+  "password":"password"
+},
+{  
+  "username":"ourself",
+  "password":"password"
+},
+{  
+  "username":"yrself",
   "password":"password"
 }
 ]
