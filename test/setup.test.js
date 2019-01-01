@@ -84,7 +84,6 @@ describe('What2Eat - Endpoints', function () {
         .set('Authorization', `Bearer ${token}`)
         .send({recipeId:777777,userId:testUser.id})
         .then((res) => {
-          testRecipe = res.body[0];
           expect(res.body.recipeId).to.equal(777777)
           expect(res.body.userId).to.equal(testUser.id)
           expect(res).to.have.status(201);
