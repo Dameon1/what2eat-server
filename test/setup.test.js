@@ -82,7 +82,7 @@ describe('What2Eat - Endpoints', function () {
       return chai.request(app)
         .post('/api/recipes')        
         .set('Authorization', `Bearer ${token}`)
-        .send({recipeId:777777,userId:testUser.id})
+        .send({recipeId:777777})
         .then((res) => {
           expect(res.body.recipeId).to.equal(777777)
           expect(res.body.userId).to.equal(testUser.id)
