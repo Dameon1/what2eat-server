@@ -63,6 +63,7 @@ describe('What2Eat - Endpoints', function () {
         .set('Authorization', `Bearer ${token}`)
         .then((res) => {
           expect(res).to.have.status(200);
+          expect(res.body).to.have.length(6);
         });
     });
 
