@@ -1,14 +1,15 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
-const { MONGODB_URI } = require('../config');
-const Recipe = require('../models/recipes');
-const User = require('../models/users');
+const mongoose = require("mongoose");
+const { MONGODB_URI } = require("../config");
+const Recipe = require("../models/recipes");
+const User = require("../models/users");
 
-let seedRecipes = require('../scratch/recipeIds.json');
-let seedUsers = require('../scratch/users.json');
+let seedRecipes = require("../scratch/recipeIds.json");
+let seedUsers = require("../scratch/users.json");
 
-mongoose.connect(MONGODB_URI)
+mongoose
+  .connect(MONGODB_URI)
   .then(() => mongoose.connection.db.dropDatabase())
   .then(() => {
     return Promise.all([

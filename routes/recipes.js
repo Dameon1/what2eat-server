@@ -1,19 +1,19 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose');
-const Recipe = require('../models/recipes');
-const passport = require('passport');
+const Recipe = require("../models/recipes");
+const passport = require("passport");
 
-//protecting the endpoints/////////////////////////////////////////////////////////
-router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
-///////////////////////////////////////////////////////////////////////////////////
-router.get('/', (req, res, next) => {
+router.use(
+  "/",
+  passport.authenticate("jwt", { session: false, failWithError: true })
+);
+router.get("/", (req, res, next) => {
   const userId = req.user.id;
   Recipe.find()
-    .where({userId})
-    .sort({ 'updatedAt': 'desc' })
+    .where({ userId })
+    .sort({ updatedAt: "desc" })
     .then(results => {
       res.json(results);
     })
@@ -21,12 +21,12 @@ router.get('/', (req, res, next) => {
       next(err);
     });
 });
-/////////////////////////////////////////////////////////////////////////////////////
-router.post('/', (req, res, next) => {
+
+router.post("/", (req, res, next) => {
   const { recipeId } = req.body;
   const userId = req.user.id;
-  if (!recipeId ) {
-    const err = new Error('Missing `recipe` in request body');
+  if (!recipeId) {
+    const err = new Error("Missing `recipe` in request body");
     err.status = 400;
     return next(err);
   }
@@ -41,11 +41,11 @@ router.post('/', (req, res, next) => {
       next(err);
     });
 });
-///////////////////////////////////////////////////////////////////////////////////
-router.delete('/:id', (req, res, next) => {
+
+router.delete("/:id", (req, res, next) => {
   const { id } = req.params;
   const userId = req.user.id;
-  Recipe.findOneAndRemove({recipeId:id,userId})
+  Recipe.findOneAndRemove({ recipeId: id, userId })
     .then(() => {
       res.status(204).end();
     })
